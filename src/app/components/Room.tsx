@@ -5,7 +5,7 @@ import SendMessage from "./SendMessage";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import { user } from "../types";
-import { BACKEND_SERVER_IP, SOCKET_IO_IP } from "../layout";
+import { BACKEND_SERVER_IP, SOCKET_IO_IP, SOCKET_IO_SUFFIX } from "../layout";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
 import {
@@ -42,7 +42,10 @@ const Room = () => {
     }
   }, [chattingWith]);
 
-  const socket = io(SOCKET_IO_IP);
+  const socket = io(BACKEND_SERVER_IP, {
+    path: SOCKET_IO_SUFFIX,
+    transports: ["websocket"],
+  });
   dispatch(setSocket(socket));
 
   const [user, setUser] = useState<user>();
