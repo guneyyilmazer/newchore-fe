@@ -1,329 +1,183 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import jennifersmith from "../images/jennifersmith.png";
-import michaelscott from "../images/michaelscott.png";
-import user1 from "../images/user1.png";
-import user2 from "../images/user2.png";
-import user3 from "../images/user3.png";
-import user4 from "../images/user4.png";
-import briefcase from "../images/briefcase.svg";
-import wallet from "../images/wallet.svg";
-import risingarrow from "../images/risingarrow.svg";
-import searchNormal from "../images/search-normal.svg";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { categoriesArray } from "../layout";
-import titleBg from "../images/titlebg.png";
+
+const TrendingServicesLink = ({
+  title,
+  href,
+}: {
+  title: string;
+  href: string;
+}) => (
+  <Link
+    href={href}
+    className="flex justify-around items-center h-12 px-4 hover:opacity-50 bg-white bg-opacity-5 rounded-full border border-white border-opacity-5 backdrop-blur-md opacity-80 text-white text-sm"
+  >
+    <span>{title}</span>
+    <div className="ml-2 w-7 h-7">
+      <Image
+        src={"/svgs/risingarrow.svg"}
+        width={50}
+        height={50}
+        alt={`${title} icon`}
+      />
+    </div>
+  </Link>
+);
+
+const SearchBar = ({ searchInput, setSearchInput, result }) => (
+  <div className="w-full md:w-2/3 lg:w-2/5 relative mt-8">
+    <div className="flex items-center h-14 px-4 text-slate-500 text-sm bg-white rounded-full">
+      <div className="flex items-center gap-3 w-6 h-6">
+        <Image
+          src={"/svgs/search-normal.svg"}
+          width={50}
+          height={50}
+          alt="Search icon"
+        />
+      </div>
+      <input
+        className="ml-2 flex-grow outline-none"
+        placeholder="What do you need help with?"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        type="text"
+      />
+      <button
+        onClick={() =>
+          window.location.replace(`/freelancers?type=${result.name}`)
+        }
+        className="px-6 py-2 text-white bg-green-600 rounded-full"
+      >
+        Search
+      </button>
+    </div>
+    {result.displayName && (
+      <div className="absolute bg-white w-full flex items-center h-12 top-14 rounded-full">
+        <Link href={`/freelancers?type=${result.name}`} className="p-2 text-sm">
+          {result.displayName.toUpperCase()}
+        </Link>
+      </div>
+    )}
+  </div>
+);
+
+const UserStats = ({ users }) => (
+  <div className="mt-8 flex items-center">
+    <div className="flex -space-x-3">
+      {users.map((user, index) => (
+        <div className="w-10 h-10 rounded-full border-2 border-white">
+          <Image
+            key={index}
+            src={user.src}
+            width={50}
+            height={50}
+            alt={`User ${index + 1}`}
+          />
+        </div>
+      ))}
+    </div>
+    <div className="ml-4 text-white">
+      Join the <span className="font-bold">800+ people</span> who are using New
+      Chore to hire.
+    </div>
+  </div>
+);
 
 const Hero = () => {
   const [searchInput, setSearchInput] = useState("");
-  type result = { name: string; displayName: string };
-  const [result, setResult] = useState<result>({ name: "", displayName: "" });
+  const [result, setResult] = useState({ name: "", displayName: "" });
+
   useEffect(() => {
-    searchInput != "" &&
-      setResult(() => {
-        const res = categoriesArray.filter((item) =>
-          item.name.startsWith(searchInput.charAt(0))
-        );
-        return res.length != 0
-          ? (res[0] as result)
-          : { name: "", displayName: "" };
-      });
-    searchInput == "" && setResult({ name: "", displayName: "" });
+    if (searchInput) {
+      const res = categoriesArray.filter((item) =>
+        item.name.startsWith(searchInput.charAt(0))
+      );
+      setResult(res.length ? res[0] : { name: "", displayName: "" });
+    } else {
+      setResult({ name: "", displayName: "" });
+    }
   }, [searchInput]);
+
+  const users = [
+    { src: "/pngs/user1.png", alt: "User 1" },
+    { src: "/pngs/user2.png", alt: "User 2" },
+    { src: "/pngs/user3.png", alt: "User 3" },
+    { src: "/pngs/user4.png", alt: "User 4" },
+  ];
+
   return (
-    <div className="md:h-[550px] secondary">
-      <div className="flex flex-col md:flex-row justify-around">
-        <div>
-          <div className="flex flex-col w-full md:w-full items-center text-white">
-            <div className="w-[88vw] sm:w-[400px] md:w-full">
-              <div className="md:w-[600px] text-3xl md:text-5xl md:leading-[64px] font-bold text-white">
-                <div className="w-full">
-                  <div className="flex mb-1 md:m-0">
-                    <h2 className="">Find The &#8203; </h2>{" "}
-                    <span
-                      className="px-2"
-                      style={{
-                        background: `url(${titleBg.src})`,
-                        backgroundSize: "100%",
-                      }}
-                    >
-                      {" "}
-                      Ideal Experts
-                    </span>
-                  </div>
-                  <h2>For Your Next Task</h2>
-                </div>
-              </div>
-              <div className="md:w-[600px] mt-5 text-white">
-                From lawn care to heavy lifting, our professionals are here to
-                make your tasks hassle-free. Experience the freedom to focus on
-                what matters most while dedicated hands handle the rest. Your
-                to-dos, their expertise.
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col justify-center items-center md:block">
-            <div className="w-[88vw] md:w-[430px] relative">
-              <div className="my-[32px] h-[53px] flex pl-5 pr-0.5 py-0.5 text-slate-500 text-sm bg-white rounded-lg justify-between items-center">
-                <div className="flex items-center gap-3">
-                  <img src={searchNormal.src} alt="" />
-                </div>
-                <input
-                  className="outline-none"
-                  placeholder="What do you need help with?"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                />
-                <button
-                  onClick={() =>
-                    window.location.replace(`/freelancers?type=${result.name}`)
-                  }
-                  className="px-5 md:px-10 py-3.5 text-white text-sm bg-green-600 rounded-lg"
+    <div className="secondary py-16">
+      <div className="flex flex-col items-center xl:flex-row justify-between">
+        <div className="container flex flex-col items-center md:items-start">
+          <div className="text-center md:text-left">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight text-white">
+                Find The{" "}
+                <span
+                  className="px-2"
+                  style={{
+                    backgroundImage: `url(/pngs/titlebg.png)`,
+                    backgroundSize: "cover",
+                  }}
                 >
-                  Search
-                </button>
-              </div>
-              {result.displayName != "" && (
-                <div className="absolute bg-white w-full flex items-center h-[50px] top-[60px]">
-                  <Link
-                    href={`/freelancers?type=${result.name}`}
-                    className="m-2 text-sm"
-                  >
-                    {result && result.displayName.toUpperCase()}
-                  </Link>
-                </div>
-              )}
+                  Ideal Experts
+                </span>{" "}
+              </h1>
+              <h1 className="text-4xl mt-4 md:text-5xl font-bold leading-tight text-white">
+                For Your Next Task
+              </h1>
             </div>
-            <div className="flex justify-center items-center h-[400px] flex-col md:hidden">
-              <div className="flex flex-col justify-center items-center w-[100vw]">
-                <div className="w-[350px] h-[167px] relative">
-                  <div className="left-[20px] top-0 absolute rounded-[11px] shadow border border-white flex flex-col justify-end items-center">
-                    <img
-                      className="w-[172px] h-[174px] rounded-xl"
-                      src={michaelscott.src}
-                    />
-                  </div>
-                  <div className="flex left-[130px] top-[8px] w-[150px] p-2 absolute bg-white rounded-[11px] shadow items-center gap-2">
-                    <img
-                      className="w-[27px] h-[27px] rounded-full"
-                      src={michaelscott.src}
-                    />
-                    <div className="flex flex-col">
-                      <div className="text-[10px] font-bold leading-[14px]">
-                        Michael Scott
-                      </div>
-                      <div className="text-gray-400 text-[10px] font-light leading-[14px]">
-                        Auto Mechanic
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-2 left-[-20px] top-[112px] absolute bg-white rounded-[10.91px] shadow flex flex-col gap-1">
-                    <div className="flex-col justify-start items-start gap-[2.73px] flex">
-                      <div className="text-[10px] font-bold leading-[14.31px]">
-                        Open to Work
-                      </div>
-                      <div className="flex gap-[10px]">
-                        <div className="flex items-center gap-1">
-                          <div className="w-[10px] h-[10px] flex justify-center items-center"></div>
-                          <div className="text-green-500 text-[10px] leading-[14px]">
-                            $75/hr
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-[10px] h-[10px] flex justify-center items-center"></div>
-                          <div className="text-red-600 text-[10px] leading-[14px]">
-                            Part-Time
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-[377px] h-[141px] relative">
-                  <div className="left-[144px] absolute rounded-xl shadow border border-white flex flex-col justify-end items-center">
-                    <img
-                      className="w-[172px] h-[174px] rounded-xl"
-                      src={jennifersmith.src}
-                    />
-                  </div>
-                  <div className="p-3 left-[60px] top-[93px] absolute bg-white rounded-[9px] shadow flex justify-start items-center gap-2">
-                    <img
-                      className="w-[23px] h-[23px] rounded-full"
-                      src={jennifersmith.src}
-                    />
-                    <div className="flex flex-col">
-                      <div className="text-[10px] font-bold leading-3">
-                        Jennifer Smith{" "}
-                      </div>
-                      <div className="text-gray-400 text-[10px] font-light leading-3">
-                        Plumber
-                      </div>
-                    </div>
-                  </div>
-                  <div className="left-[250px] top-[20px] p-2 w-[130px] absolute bg-white rounded-[9px] shadow flex flex-col gap-1">
-                    <div className="flex flex-col gap-[2px]">
-                      <div className="text-[10px] font-bold">Open to Work</div>
-                      <div className="flex gap-2">
-                        <div className="flex items-center gap-1">
-                          <div className="w-[10px] h-[10px] flex justify-center items-center"></div>
-                          <div className="text-green-500 text-[9.5px]">
-                            $90hr
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <div className="w-[9px] h-[9px] flex justify-center items-center"></div>
-                          <div className="text-red-600 text-[10px] leading-3">
-                            Full-Time
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex mt-10 flex-col">
-              <div className="text-white text-sm font-bold">
-                TRENDING SERVICES
-              </div>
-              <div className="mt-4">
-                <div className="hidden md:flex gap-4">
-                  <Link
-                    href="/posts?type=cleaning"
-                    className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                  >
-                    <div className="">CLEANING</div>
-                    <div className="w-7 h-7">
-                      <img src={risingarrow.src} className="" alt="" />
-                    </div>
-                  </Link>
-                  <Link
-                    href="/posts?type=plumbing"
-                    className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                  >
-                    <div className="">PLUMBING</div>
-                    <div className="w-7 h-7">
-                      <img src={risingarrow.src} className="" alt="" />
-                    </div>
-                  </Link>
-                  <Link
-                    href="/posts?type=dogWalking"
-                    className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                  >
-                    <div className="">DOG WALKING</div>
-                    <div className="w-7 h-7">
-                      <img src={risingarrow.src} className="" alt="" />
-                    </div>
-                  </Link>
-                </div>
-                <div className="flex flex-col md:hidden gap-4">
-                  <div className="flex gap-3">
-                    <Link
-                      href="/posts?type=cleaning"
-                      className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                    >
-                      <div className="">CLEANING</div>
-                      <div className="w-7 h-7">
-                        <img src={risingarrow.src} className="" alt="" />
-                      </div>
-                    </Link>
-                    <Link
-                      href="/posts?type=plumbing"
-                      className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                    >
-                      <div className="">PLUMBING</div>
-                      <div className="w-7 h-7">
-                        <img src={risingarrow.src} className="" alt="" />
-                      </div>
-                    </Link>
-                  </div>
-                  <Link
-                    href="/posts?type=dogWalking"
-                    className="w-[174px] flex justify-around items-center h-[50px] hover:opacity-50 bg-white bg-opacity-5 rounded-[51px] border border-white border-opacity-5 backdrop-blur-[11.60px] opacity-80 text-white text-sm"
-                  >
-                    <div className="">DOG WALKING</div>
-                    <div className="w-7 h-7">
-                      <img src={risingarrow.src} className="" alt="" />
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="w-[95%] hidden md:flex md:w-[550px] mt-[32px] h-10 items-center gap-4">
-              <div className="flex">
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user1.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user2.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user3.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user4.src}
-                />
-              </div>
-              <div className="w-[400px] md:text-center">
-                <span className="text-gray-50 text-base">Join the </span>
-                <span className="text-gray-50 text-base font-bold">
-                  800+ people
-                </span>
-                <span className="text-gray-50 text-base">
-                  {" "}
-                  who are using New Chore to hire.
-                </span>
-              </div>
-            </div>
-            <div className="w-[90%] py-[50px] flex justify-center flex-col md:hidden md:w-[550px] mt-[32px] h-10 items-start gap-4">
-              <div className="w-[300px] md:text-center">
-                <span className="text-gray-50 text-base">Join the </span>
-                <span className="text-gray-50 text-base font-bold">
-                  800+ people
-                </span>
-                <span className="text-gray-50 text-base">
-                  {" "}
-                  who are using New Chore to hire.
-                </span>
-              </div>
-              <div className="flex w-full justify-end relative">
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user1.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user2.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user3.src}
-                />
-                <img
-                  className="w-7 h-7 md:w-10 md:h-10 rounded-[200px]"
-                  src={user4.src}
-                />
-              </div>
-            </div>
+            <p className="mt-4 max-w-xl text-white">
+              From lawn care to heavy lifting, our professionals are here to
+              make your tasks hassle-free. Experience the freedom to focus on
+              what matters most while dedicated hands handle the rest. Your
+              to-dos, their expertise.
+            </p>
           </div>
+
+          <SearchBar
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            result={result}
+          />
+
+          <div className="mt-10 text-white text-sm font-bold">
+            TRENDING SERVICES
+          </div>
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-5">
+            <TrendingServicesLink
+              title="CLEANING"
+              href="/posts?type=cleaning"
+            />
+            <TrendingServicesLink
+              title="PLUMBING"
+              href="/posts?type=plumbing"
+            />
+            <TrendingServicesLink
+              title="DOG WALKING"
+              href="/posts?type=dogWalking"
+            />
+          </div>
+
+          <UserStats users={users} />
         </div>
-        <div className="hidden md:flex flex-col w-[550px]">
-          <div className="w-[480px] h-[245px] relative">
-            <div className="left-[6px] top-0 absolute rounded-2xl shadow border border-white flex flex-col justify-end items-center ">
+
+        <div className="mt-12 flex flex-col w-11/12 md:w-1/2">
+          <div className="md:w-[480px] h-[245px] relative">
+            <div className="left-8 lg:left-[6px] top-0 absolute rounded-2xl shadow border border-white flex flex-col justify-end items-center ">
               <img
-                className="w-[252px] rounded-2xl h-64"
-                src={michaelscott.src}
+                className="w-48 lg:w-[252px] lg:h-64 rounded-2xl "
+                src={"/pngs/michaelscott.png"}
               />
             </div>
-            <div className="pl-3 pr-8 py-3 w-[195px] left-[200px] top-[12px] absolute bg-white rounded-2xl shadow flex items-center gap-3">
-              <img className="w-10 h-10 rounded-full" src={michaelscott.src} />
+            <div className="pl-3 pr-8 py-3 w-[195px] left-36 lg:left-[200px] top-[12px] absolute bg-white rounded-2xl shadow flex items-center gap-3">
+              <img
+                className="w-10 h-10 rounded-full"
+                src={"/pngs/michaelscott.png"}
+              />
               <div className="flex flex-col">
                 <div className="text-black text-sm font-bold">
                   Michael Scott
@@ -333,53 +187,56 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="px-4 py-3 left-[-90px] top-[165px] absolute bg-white rounded-2xl shadow flex flex-col gap-1">
+            <div className="px-4 py-3 lg:left-[-90px] top-[165px] absolute bg-white rounded-2xl shadow flex flex-col gap-1">
               <div className="flex flex-col gap-1">
                 <div className="text-black text-sm font-bold">Open to Work</div>
                 <div className="flex gap-4">
                   <div className="flex items-center gap-1">
-                    <img src={wallet.src} alt="" />
+                    <img src={"/svgs/wallet.svg"} alt="" />
                     <div className="text-green-500 text-sm">$75/hr</div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <img src={briefcase.src} alt="" />
+                    <img src={"/svgs/briefcase.svg"} alt="" />
                     <div className="text-red-600 text-sm">Part-Time</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-[485px] h-[245px] relative">
-            <div className="left-[200px] bottom-1 absolute rounded-2xl shadow border border-white flex flex-col justify-end items-center">
+          <div className="lg:w-[485px] h-[245px] relative">
+            <div className="right-12 lg:left-[200px] bottom-1 absolute rounded-2xl shadow border border-white flex flex-col justify-end items-center">
               <img
-                className="w-[252px] rounded-2xl h-64"
-                src={jennifersmith.src}
+                className="w-48 lg:w-[252px] lg:h-64 rounded-2xl"
+                src={"/pngs/jennifersmith.png"}
               />
             </div>
-            <div className="pl-3 pr-8 py-3 left-[70px] top-[163px] absolute bg-white rounded-2xl shadow flex items-center gap-3">
-              <img className="w-10 h-10 rounded-full" src={jennifersmith.src} />
-              <div className="flex flex-col">
-                <div className="text-black text-sm font-bold">
+            <div className="pl-3 pr-8 py-3 lg:left-[70px] top-[163px] absolute bg-white rounded-2xl shadow flex items-center gap-3">
+              <img
+                className="w-10 h-10 rounded-full"
+                src={"/pngs/jennifersmith.png"}
+              />
+              <div className="flex flex-col text-xs lg:text-sm">
+                <div className="text-black font-bold">
                   Jennifer Smith{" "}
                 </div>
-                <div className="text-gray-400 text-sm font-light">Plumber</div>
+                <div className="text-gray-400 font-light">Plumber</div>
               </div>
             </div>
-            <div className="px-4 py-3 w-[190px] left-[392px] top-[29px] absolute bg-white rounded-2xl shadow flex flex-col gap-1">
-              <div className="flex flex-col gap-1">
-                <div className="text-black text-sm font-bold">Open to Work</div>
+            <div className="px-4 py-3 lg:w-[190px] -right-5 lg:left-[392px] top-[29px] absolute bg-white rounded-2xl shadow flex flex-col gap-1">
+              <div className="flex flex-col gap-1 text-xs lg:text-sm">
+                <div className="text-black font-bold">Open to Work</div>
                 <div className="flex gap-4">
                   <div className="flex items-center gap-1">
                     <div className="w-4 h-4 flex justify-center items-center">
-                      <img src={wallet.src} alt="" />
+                      <img src={"/svgs/wallet.svg"} alt="" />
                     </div>
-                    <div className="text-green-500 text-sm">$90hr</div>
+                    <div className="text-green-500">$90hr</div>
                   </div>
                   <div className="flex items-center gap-1">
                     <div className="w-4 h-4 flex justify-center items-center">
-                      <img src={briefcase.src} alt="" />
+                      <img src={"/svgs/briefcase.svg"} alt="" />
                     </div>
-                    <div className="text-red-600 text-sm">Full-Time</div>
+                    <div className="text-red-600">Full-Time</div>
                   </div>
                 </div>
               </div>

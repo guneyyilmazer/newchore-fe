@@ -19,13 +19,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="">
-      <div className="secondary pt-[60px]">
+      <div className="secondary lg:pt-16 px-8 lg:px-24 2xl:px-96">
         <Hero />
       </div>
       <div className="">
         <Features />
       </div>
-      <div>
+  {/*     <div>
         <ForClientsAndFreelancers />
       </div>
       <div>
@@ -57,7 +57,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="md:w-12 h-12 bg-white bg-opacity-5 rounded-full border-2 border-white border-opacity-5" />
+      <div className="md:w-12 h-12 bg-white bg-opacity-5 rounded-full border-2 border-white border-opacity-5" /> */}
     </main>
   );
 }
