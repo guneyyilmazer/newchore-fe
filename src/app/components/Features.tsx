@@ -12,8 +12,12 @@ interface FeatureCardProps {
 }
 
 // Define the FeatureCard component
-const FeatureCard: React.FC<FeatureCardProps> = ({ title, imageSrc, description }) => (
-  <div className="flex flex-col gap-4">
+const FeatureCard: React.FC<FeatureCardProps> = ({
+  title,
+  imageSrc,
+  description,
+}) => (
+  <div className="w-2/3 lg:w-full flex-shrink-0 lg:flex-shrink flex flex-col gap-4">
     <div className="h-1 bg-green-600 bg-opacity-70" />
     <h3 className="text-white text-xl font-medium">{title}</h3>
     <div className="flex flex-col gap-4">
@@ -35,7 +39,7 @@ interface FeatureData {
 }
 
 // Define the Features component
-const Features: React.FC = () => {
+const Features = ({ className }: { className: string }) => {
   // Define the features data
   const featuresData: FeatureData[] = [
     {
@@ -65,9 +69,14 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <div className="w-full bg-slate-800 flex flex-col justify-center items-center">
+    <div
+      className={
+        "w-full bg-slate-800 flex flex-col justify-center items-center " +
+        className
+      }
+    >
       {/* Main wrapper div */}
-      <div className="w-full max-w-6xl px-4">
+      <div className="w-full max-w-7xl px-4">
         {/* Title section */}
         <div className="flex justify-center mb-8">
           <h2 className="text-center text-white text-3xl md:text-4xl font-medium leading-tight">
@@ -77,7 +86,7 @@ const Features: React.FC = () => {
         </div>
 
         {/* Features section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-4">
+        <div className="w-full flex gap-5 overflow-x-scroll lg:overflow-visible pb-4">
           {featuresData.map((feature, index) => (
             <FeatureCard
               key={index}

@@ -8,7 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 const HireTheseFreelancers = () => {
   return (
-    <div className="w-[100vw] h-[650px] relative bg-white flex flex-col justify-center items-center">
+    <div className="w-full h-[650px] relative bg-white flex flex-col justify-center items-center">
       <div className="w-[90%] 2xl:w-[70vw]">
         <div className="mb-10 text-center text-black text-[32px] font-bold leading-[44px]">
           Hire These Freelancers and Even More
@@ -21,7 +21,10 @@ const HireTheseFreelancers = () => {
         </div>
         <div className="w-6 h-6 justify-center items-center flex"></div>
         <div className="flex overflow-x-auto relative justify-between">
-          <Link href="/freelancers?type=plumbing" className="relative mr-2 md:m-0">
+          <Link
+            href="/freelancers?type=plumbing"
+            className="relative mr-2 md:m-0"
+          >
             <div className="text-white absolute m-7 text-sm">
               Leaky faucet? They`ll fix it!
             </div>
@@ -39,7 +42,10 @@ const HireTheseFreelancers = () => {
               />
             </div>
           </Link>
-          <Link href="/freelancers?type=moving" className="relative mr-2 md:m-0">
+          <Link
+            href="/freelancers?type=moving"
+            className="relative mr-2 md:m-0"
+          >
             <div className="text-white absolute m-7 text-sm">
               Relocate stress free with pros.
             </div>
@@ -57,7 +63,10 @@ const HireTheseFreelancers = () => {
               />
             </div>
           </Link>
-          <Link href="/freelancers?type=cleaning" className="relative mr-2 md:m-0">
+          <Link
+            href="/freelancers?type=cleaning"
+            className="relative mr-2 md:m-0"
+          >
             <div className="text-white absolute m-7 text-sm">
               Sparkling spaces everytime.
             </div>

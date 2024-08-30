@@ -19,22 +19,19 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="">
-      <div className="secondary lg:pt-16 px-8 lg:px-24 2xl:px-96">
-        <Hero />
-      </div>
-      <div className="">
-        <Features />
-      </div>
-  {/*     <div>
+      <div className="bg-slate-800">
+        <div className="lg:pt-16 px-8 lg:w-10/12 2xl:p-0 2xl:w-2/3 mx-auto">
+          <Hero />
+        </div>
+        <Features className="mt-20 mb-10" />
+
         <ForClientsAndFreelancers />
       </div>
       <div>
         <HireTheseFreelancers />
       </div>
-      <div className="">
-        <TopFreelancersInYourCity />
-      </div>
-      <div className="w-[100vw] flex justify-center items-center relative h-[300px] md:h-[600px] bg-opacity-20">
+
+      <div className="w-full bg-black flex justify-center items-center relative h-[300px] md:h-[600px] bg-opacity-20">
         <div className="w-[90%]">
           {" "}
           <div className="text-white 0 md:ml-[100px] py-[30px] md:py-[70px] font-bold">
@@ -57,7 +54,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="md:w-12 h-12 bg-white bg-opacity-5 rounded-full border-2 border-white border-opacity-5" /> */}
+      <div className="md:w-12 h-12 bg-white bg-opacity-5 rounded-full border-2 border-white border-opacity-5" />
     </main>
   );
 }

@@ -11,7 +11,7 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const user = useSelector((shop: any) => shop.app.user);
   return (
-    <div className="w-[100vw] text-white hidden md:flex justify-around items-center h-[10vh] secondary">
+    <div className="text-white hidden md:flex justify-around items-center h-[10vh] secondary">
       <Link href="/" className="flex h-10 items-center gap-1.5">
         <img src={logo.src} alt="" />
         <div className="text-xl font-bold">New Chore</div>
