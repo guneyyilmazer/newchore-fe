@@ -10,7 +10,12 @@ import forClientsBg from "../images/forclientsbg.png";
 import Image from "next/image";
 const ForClientsList = ({ text }: { text: string }) => (
   <div className="flex gap-2 my-2 text-gray-300 text-sm">
-    <Image width={50} height={50} src={"/svgs/tick-square.svg"} />
+    <Image
+      width={50}
+      alt="Tick Square"
+      height={50}
+      src={"/svgs/tick-square.svg"}
+    />
 
     {text}
   </div>
