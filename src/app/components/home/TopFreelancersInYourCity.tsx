@@ -2,13 +2,13 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { BACKEND_SERVER_IP } from "../layout";
+import { BACKEND_SERVER_IP } from "../../layout";
 import { useSelector } from "react-redux";
-import { user } from "../types";
+import { user } from "../../types";
 import Cookies from "js-cookie";
 import DefaultProfilePicture from "../images/default.jpeg";
 import star from "../images/Star.svg";
-import tickCircle from "../images/tick-circle.svg";
+import tickCircle from "../../images/tick-circle.svg";
 import Link from "next/link";
 const TopFreelancersInYourCity = () => {
   const client = useSelector((shop: any) => shop.app.user);
@@ -37,7 +37,7 @@ const TopFreelancersInYourCity = () => {
       setUser(response);
     }
   };
-  console.log(client)
+  console.log(client);
   const getFreelancers = async () => {
     const res = await fetch(`${BACKEND_SERVER_IP}/user/loadFreelancers`, {
       headers: {
@@ -105,11 +105,14 @@ const TopFreelancersInYourCity = () => {
               <div className="flex w-full mt-5 justify-between">
                 <div className="flex gap-1 items-center">
                   <img src={tickCircle.src} alt="" />
-                  <div className="text-slate-600 text-xs">
-                    Verified{" "}
-                  </div>
+                  <div className="text-slate-600 text-xs">Verified </div>
                 </div>
-                <Link href={`/user?id=${item._id}`} className="text-green-600 text-sm">View Profile</Link>
+                <Link
+                  href={`/user?id=${item._id}`}
+                  className="text-green-600 text-sm"
+                >
+                  View Profile
+                </Link>
               </div>
             </div>
           </div>

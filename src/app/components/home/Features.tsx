@@ -1,8 +1,4 @@
-import React from "react";
-import features1 from "../images/features1.png";
-import features2 from "../images/features2.png";
-import features3 from "../images/features3.png";
-import features4 from "../images/features4.png";
+import Image from "next/image";
 
 // Define the type for FeatureCard props
 interface FeatureCardProps {
@@ -20,14 +16,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   <div className="w-2/3 lg:w-full flex-shrink-0 lg:flex-shrink flex flex-col gap-4">
     <div className="h-1 bg-green-600 bg-opacity-70" />
     <h3 className="text-white text-xl font-medium">{title}</h3>
-    <div className="flex flex-col gap-4">
-      <img
-        className="h-[26.0625rem] rounded-lg object-cover"
-        src={imageSrc}
-        alt={title}
-      />
-      <p className="text-white font-light">{description}</p>
-    </div>
+    <Image
+      width={500}
+      height={417}
+      className=" rounded-lg object-cover"
+      src={`/png/${imageSrc}`}
+      alt={title}
+    />
+    <p className="text-white font-light mt-3">{description}</p>
   </div>
 );
 
@@ -44,25 +40,28 @@ const Features = ({ className }: { className: string }) => {
   const featuresData: FeatureData[] = [
     {
       title: "Accurate Matchmaking",
-      imageSrc: features1.src,
+      imageSrc: "features1.png",
       description:
         "Our advanced algorithm pairs you with skilled professionals based on their expertise, reviews, and proximity.",
     },
     {
       title: "Instant Chat Support",
-      imageSrc: features2.src,
+      imageSrc: "features2.png",
+
       description:
         "Need quick assistance? Connect instantly with our dedicated support team through our built-in chat feature.",
     },
     {
       title: "Transparent Pricing",
-      imageSrc: features3.src,
+      imageSrc: "features3.png",
+
       description:
         "We guarantee upfront, transparent pricing for every job. Know exactly what you’ll pay before you hire.",
     },
     {
       title: "Secure Payments",
-      imageSrc: features4.src,
+      imageSrc: "features4.png",
+
       description:
         "Your financial security is our priority. All transactions are processed through a reliable, encrypted system.",
     },
@@ -86,7 +85,7 @@ const Features = ({ className }: { className: string }) => {
         </div>
 
         {/* Features section */}
-        <div className="w-full flex gap-5 overflow-x-scroll lg:overflow-visible pb-4">
+        <div className="w-full flex gap-5 overflow-x-scroll lg:overflow-x-visible pb-4">
           {featuresData.map((feature, index) => (
             <FeatureCard
               key={index}

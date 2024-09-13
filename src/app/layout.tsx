@@ -7,9 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 import "./css/styles.css";
 import { Providers } from "./Providers";
 import Footer from "./components/Footer";
-export const BACKEND_SERVER_IP = "https://newchore.com/backend";
+/* export const BACKEND_SERVER_IP = "https://newchore.com/backend";
 export const SOCKET_IO_IP = "https://newchore.com/socket.io";
+ */
 export const SOCKET_IO_SUFFIX = "/socket.io";
+
+export const BACKEND_SERVER_IP = "http://localhost:4000";
+export const SOCKET_IO_IP = "https://newchore.com/socket.io";
+
 export const categories: categories = {
   cleaning: { value: { cleaning: true }, name: "cleaning" },
   cuttingGrass: { value: { cuttingGrass: true }, name: "cuttingGrass" },

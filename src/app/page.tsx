@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Hero from "./components/Hero";
+import Hero from "./components/home/Hero";
 import { BACKEND_SERVER_IP } from "./layout";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
@@ -7,10 +7,10 @@ import { user } from "./types";
 import Link from "next/link";
 import emilyturner from "./images/emilyturner.jpg";
 import DefaultProfilePicture from "./images/default.jpeg";
-import Features from "./components/Features";
-import ForClientsAndFreelancers from "./components/ForClientsAndFreelancers";
-import HireTheseFreelancers from "./components/HireTheseFreelancers";
-import TopFreelancersInYourCity from "./components/TopFreelancersInYourCity";
+import Features from "./components/home/Features";
+import ForClientsAndFreelancers from "./components/home/ForClientsAndFreelancers";
+import HireTheseFreelancers from "./components/home/HireTheseFreelancers";
+import TopFreelancersInYourCity from "./components/home/TopFreelancersInYourCity";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "New Chore",
@@ -18,21 +18,16 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <main className="">
+    <main>
       <div className="bg-slate-800">
-        <div className="lg:pt-16 px-8 lg:w-10/12 2xl:p-0 2xl:w-2/3 mx-auto">
-          <Hero />
-        </div>
+        <Hero className="lg:pt-16 w-10/12 2xl:w-2/3 mx-auto" />
         <Features className="mt-20 mb-10" />
-
         <ForClientsAndFreelancers />
       </div>
-      <div>
-        <HireTheseFreelancers />
-      </div>
+      <HireTheseFreelancers className="mx-auto w-11/12 mb-20 max-w-[88rem]" />
 
       <div className="w-full bg-black flex justify-center items-center relative h-[300px] md:h-[600px] bg-opacity-20">
-        <div className="w-[90%]">
+        <div className="w-11/12">
           {" "}
           <div className="text-white 0 md:ml-[100px] py-[30px] md:py-[70px] font-bold">
             WHAT USERS ARE SAYING

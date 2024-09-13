@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { categoriesArray } from "../layout";
+import { categoriesArray } from "../../layout";
 
 const TrendingServicesLink = ({
   title,
@@ -18,7 +18,7 @@ const TrendingServicesLink = ({
     <span>{title}</span>
     <div className="ml-2 w-7 h-7">
       <Image
-        src={"/svgs/risingarrow.svg"}
+        src={"/svg/risingarrow.svg"}
         width={50}
         height={50}
         alt={`${title} icon`}
@@ -28,11 +28,11 @@ const TrendingServicesLink = ({
 );
 
 const SearchBar = ({ searchInput, setSearchInput, result }) => (
-  <div className="w-full md:w-2/3 lg:w-2/5 relative mt-8">
+  <div className="w-full lg:w-3/4 xl:w-2/3 relative mt-8">
     <div className="flex items-center h-14 px-4 text-slate-500 text-sm bg-white rounded-full">
       <div className="flex items-center gap-3 w-6 h-6">
         <Image
-          src={"/svgs/search-normal.svg"}
+          src={"/svg/search-normal.svg"}
           width={50}
           height={50}
           alt="Search icon"
@@ -68,9 +68,11 @@ const UserStats = ({ users }) => (
   <div className="mt-8 flex items-center">
     <div className="flex -space-x-3">
       {users.map((user, index) => (
-        <div className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border-2 border-white">
+        <div
+          key={index}
+          className="w-7 h-7 lg:w-10 lg:h-10 rounded-full border-2 border-white"
+        >
           <Image
-            key={index}
             src={user.src}
             width={50}
             height={50}
@@ -88,13 +90,13 @@ const UserStats = ({ users }) => (
 const MichaelScottCard = () => (
   <div className="relative">
     <div className="">
-      <img className="rounded-2xl" src="/pngs/michaelscott.png" alt="" />
+      <img className="rounded-2xl" src="/png/michaelscott.png" alt="" />
     </div>
 
     <div className="absolute top-4 -right-16 p-1.5 lg:p-3.5 py-2.5 bg-white rounded-xl flex items-center gap-3">
       <img
         className="w-7 h-7 lg:w-10 lg:h-10 rounded-full"
-        src="/pngs/michaelscott.png"
+        src="/png/michaelscott.png"
         alt=""
       />
       <div className="">
@@ -107,11 +109,11 @@ const MichaelScottCard = () => (
       <h3 className="font-bold">Open To Work</h3>
       <div className="flex gap-4 items-center justify-between">
         <div className="flex items-center gap-1">
-          <img src={"/svgs/wallet.svg"} alt="" />
+          <img src={"/svg/wallet.svg"} alt="" />
           <span className="text-green-600">$75/hr</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src={"/svgs/briefcase.svg"} alt="" />
+          <img src={"/svg/briefcase.svg"} alt="" />
           <span className="text-red-600">Part-Time</span>
         </div>
       </div>
@@ -122,12 +124,12 @@ const MichaelScottCard = () => (
 const JenniferSmithCard = () => (
   <div className="relative">
     <div className="">
-      <img className=" rounded-2xl" src="/pngs/jennifersmith.png" alt="" />
+      <img className=" rounded-2xl" src="/png/jennifersmith.png" alt="" />
     </div>
     <div className="absolute -left-16 bottom-2 p-1.5 lg:p-3.5 py-2.5 bg-white rounded-xl flex items-center gap-3">
       <img
         className="w-7 h-7 lg:w-10 lg:h-10 rounded-full"
-        src="/pngs/jennifersmith.png"
+        src="/png/jennifersmith.png"
         alt=""
       />
       <div className="">
@@ -140,33 +142,19 @@ const JenniferSmithCard = () => (
       <h3 className="font-bold">Open To Work</h3>
       <div className="flex gap-4 items-center justify-between">
         <div className="flex items-center gap-1">
-          <img src={"/svgs/wallet.svg"} alt="" />
+          <img src={"/svg/wallet.svg"} alt="" />
           <span className="text-green-600">$75/hr</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src={"/svgs/briefcase.svg"} alt="" />
+          <img src={"/svg/briefcase.svg"} alt="" />
           <span className="text-red-600">Part-Time</span>
         </div>
       </div>
     </div>
   </div>
 );
-const UserCards = ({ className }: { className: string }) => (
-  <div
-    className={
-      "relative text-[10px] md:text-xs lg:text-sm w-[15rem] h-[15rem] md:w-[18rem] md:h-[18rem] lg:w-[36rem] lg:h-[22rem] xl:w-[50rem] xl:h-[30rem] 2xl:w-[46rem] " +
-      className
-    }
-  >
-    <div className="absolute w-36  h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-72 xl:h-72 -top-6 left-0">
-      <MichaelScottCard />
-    </div>
-    <div className="absolute w-36 h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-72 xl:h-72 bottom-0 right-0">
-      <JenniferSmithCard />
-    </div>
-  </div>
-);
-const Hero = () => {
+
+const Hero = ({ className }: { className: string }) => {
   const [searchInput, setSearchInput] = useState("");
   const [result, setResult] = useState({ name: "", displayName: "" });
 
@@ -182,31 +170,31 @@ const Hero = () => {
   }, [searchInput]);
 
   const users = [
-    { src: "/pngs/user1.png", alt: "User 1" },
-    { src: "/pngs/user2.png", alt: "User 2" },
-    { src: "/pngs/user3.png", alt: "User 3" },
-    { src: "/pngs/user4.png", alt: "User 4" },
+    { src: "/png/user1.png", alt: "User 1" },
+    { src: "/png/user2.png", alt: "User 2" },
+    { src: "/png/user3.png", alt: "User 3" },
+    { src: "/png/user4.png", alt: "User 4" },
   ];
 
   return (
-    <div className="secondary py-16">
-      <div className="flex flex-col items-center lg:flex-row justify-between">
-        <div className="container flex flex-col items-center md:items-start">
+    <div className={`${className} py-16`}>
+      <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
+        <div className="lg:w-1/2 flex flex-col items-center lg:items-start">
           <div className="">
             <div>
-              <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white">
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
                 Find The{" "}
                 <span
                   className="px-2"
                   style={{
-                    backgroundImage: `url(/pngs/titlebg.png)`,
+                    backgroundImage: `url(/png/titlebg.png)`,
                     backgroundSize: "cover",
                   }}
                 >
                   Ideal Experts
                 </span>{" "}
               </h1>
-              <h1 className="text-3xl mt-4 lg:text-5xl font-bold leading-tight text-white">
+              <h1 className="text-3xl mt-4 lg:text-4xl xl:text-5xl font-bold leading-tight text-white">
                 For Your Next Task
               </h1>
             </div>
@@ -227,7 +215,7 @@ const Hero = () => {
           <div className="mt-10 text-white text-sm font-bold">
             TRENDING SERVICES
           </div>
-          <div className="flex flex-wrap lg:justify-center md:justify-start gap-4 mt-5">
+          <div className="flex flex-wrap md:justify-start gap-4 mt-5">
             <TrendingServicesLink
               title="CLEANING"
               href="/posts?type=cleaning"
@@ -244,7 +232,18 @@ const Hero = () => {
 
           <UserStats users={users} />
         </div>
-        <UserCards className="mt-20 lg:m-0" />
+        <div className="w-[100vw] lg:w-1/2 overflow-hidden lg:overflow-visible">
+          {" "}
+          {/* 100vw is necessary cause of overflow-hidden cutting until the width*/}
+          <div className="flex flex-col items-center -translate-x-12 md:-translate-x-10 xl:translate-x-0 text-[10px] md:text-xs lg:text-sm">
+            <div className="w-36 h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 2xl:w-72 2xl:h-72">
+              <MichaelScottCard />
+            </div>
+            <div className="-translate-y-10 translate-x-24 md:translate-x-32 lg:translate-x-40 2xl:translate-x-56 w-36 h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-56 xl:h-56 2xl:w-72 2xl:h-72">
+              <JenniferSmithCard />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

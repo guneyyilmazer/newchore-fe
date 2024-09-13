@@ -10,7 +10,7 @@ import forClientsBg from "../images/forclientsbg.png";
 import Image from "next/image";
 const ForClientsList = ({ text }: { text: string }) => (
   <div className="flex gap-2 my-2 text-gray-300 text-sm">
-    <Image width={50} height={50} src={"/svgs/tick-square.svg"} />
+    <Image width={50} height={50} src={"/svg/tick-square.svg"} />
 
     {text}
   </div>
@@ -27,7 +27,7 @@ const Title = ({ title }: { title: string }) => (
 );
 
 const ForClientsCard = () => (
-  <div className="xl:w-2/3 2xl:w-1/2 py-12 bg-slate-800 flex flex-col xl:flex-row justify-between rounded-3xl">
+  <div className="max-w-4xl py-12 bg-slate-800 flex flex-col xl:flex-row justify-between rounded-3xl">
     <div className="px-10 xl:p-0 xl:pl-10 flex flex-col justify-between">
       <div>
         <ArrowIcon />
@@ -52,17 +52,17 @@ const ForClientsCard = () => (
 
     <div
       className="pr-5 mt-10 xl:m-0"
-      style={{ background: "url(/pngs/forclientsbg.png)" }}
+      style={{ background: "url(/png/forclientsbg.png)" }}
     >
-      <div className="mx-auto max-w-xs xl:max-w-[42rem] xl:w-[25rem]">
-        <img src={"/pngs/forclient.png"} alt="" />
+      <div className="mx-auto max-w-xs xl:max-w-2xl xl:w-96">
+        <Image width={500} height={500} src={"/png/forclient.png"} alt="" />
       </div>
     </div>
   </div>
 );
 
 const ForFreelancersCard = () => (
-  <div className="xl:w-1/4 2xl:w-1/4 flex flex-col justify-between p-12 rounded-3xl bg-green-950">
+  <div className="lg:max-w-sm h-[30rem] lg:h-auto flex flex-col justify-between p-12 rounded-3xl bg-green-950">
     <div>
       <ArrowIcon />
       <Title title="For Freelancers" />
@@ -88,7 +88,7 @@ const ForClientsAndFreelancers = () => (
         Skillful Solutions, Delivered by Experts
       </div>
 
-      <div className="mt-10 w-11/12 xl:m-0 flex xl:justify-center gap-5 flex-col lg:flex-row">
+      <div className="px-5 2xl:p-0 flex flex-col lg:flex-row gap-5">
         <ForClientsCard />
         <ForFreelancersCard />
       </div>
