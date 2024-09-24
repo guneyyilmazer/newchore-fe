@@ -75,7 +75,7 @@ const Features = ({ className }: { className: string }) => {
       }
     >
       {/* Main wrapper div */}
-      <div className="w-full max-w-7xl px-4">
+      <div className="w-full px-4">
         {/* Title section */}
         <div className="flex justify-center mb-8">
           <h2 className="text-center text-white text-3xl md:text-4xl font-medium leading-tight">

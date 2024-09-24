@@ -9,12 +9,13 @@ import Link from "next/link";
 import forClientsBg from "../images/forclientsbg.png";
 import Image from "next/image";
 const ForClientsList = ({ text }: { text: string }) => (
-  <div className="flex gap-2 my-2 text-gray-300 text-sm">
+  <div className="flex items-start gap-2 my-2 text-gray-300 text-sm">
     <Image
       width={50}
       alt="Tick Square"
       height={50}
-      src={"/svgs/tick-square.svg"}
+      className="mt-0.5"
+      src={"/svg/tick-square.svg"}
     />
 
     {text}
@@ -50,7 +51,7 @@ const ForClientsCard = () => (
       </div>
       <div>
         <button className="bg-green-600 mt-5 p-5 py-3 rounded-md text-sm">
-          Discord New Chore for Clients
+          Discover New Chore for Clients
         </button>
       </div>
     </div>
@@ -79,21 +80,21 @@ const ForFreelancersCard = () => (
         with clients seeking your expertise.
       </p>
       <button className="bg-green-600 p-5 py-3 rounded-md text-sm">
-        Discord New Chore for Clients
+        Discover New Chore for Clients
       </button>
     </div>
   </div>
 );
 
 const ForClientsAndFreelancers = () => (
-  <div className="bg-white text-white flex flex-col justify-center items-center py-16">
+  <div className="bg-white flex flex-col justify-center items-center py-16">
     <div className="mb-12 flex justify-center flex-col items-center">
       <div className="text-center">THE FUTURE OF WORK</div>
       <div className="text-center text-2xl font-bold">
         Skillful Solutions, Delivered by Experts
       </div>
 
-      <div className="px-5 2xl:p-0 flex flex-col lg:flex-row gap-5">
+      <div className="px-5 mt-7 2xl:p-0 text-white flex flex-col lg:flex-row gap-5">
         <ForClientsCard />
         <ForFreelancersCard />
       </div>

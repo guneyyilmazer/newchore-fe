@@ -177,7 +177,7 @@ const Hero = ({ className }: { className: string }) => {
   ];
 
   return (
-    <div className={`${className} py-16`}>
+    <div className={`${className}`}>
       <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
         <div className="lg:w-1/2 flex flex-col items-center lg:items-start">
           <div className="">

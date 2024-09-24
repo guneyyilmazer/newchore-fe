@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import logo from "../images/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -11,27 +10,29 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 
 const Footer = () => {
+  const date = new Date();
   const mobileFilterMenu = useSelector(
     (shop: any) => shop.app.mobileFilterMenu
   );
   return (
     <div>
       {!mobileFilterMenu && (
-        <div className="md:h-[428px] p-6 bg-white flex flex-col md:flex-row justify-center items-center gap-6">
-          <div className="md:w-[495px] h-[320px] md:h-[380px] flex flex-col justify-center items-center bg-slate-800 rounded-[20px]">
-            <div className="w-[86%] md:w-[80%]">
+        <div className="p-6 bg-white flex flex-col xl:flex-row justify-center gap-6">
+          <div className="p-8 w-full xl:w-auto 2xl:w-1/3 flex flex-col justify-center bg-slate-800 rounded-[1.25rem]">
+            <div className="w-10/12">
               <div className="flex flex-col gap-5">
-                <div className="text-white text-2xl md:text-[40px] font-bold md:leading-[48px]">
+                <div className="text-white text-2xl lg:text-4xl font-bold lg:leading-[3rem]">
                   Built for you to hire the right person, for the right job.
                 </div>
-                <div className="md:w-96 text-gray-100 font-light">
+                <div className="lg:w-8/12 text-gray-100 font-light">
                   Hire from over 1000 people for variety of tasks. Find the
                   right fit for your job using New Chore.
                 </div>
               </div>
-              <div className="mt-[50px] md:mt-[32px]">
+              <div className="mt-12 md:mt-8">
                 <Link
                   href="/auth"
                   className="px-10 py-3.5 bg-green-600 rounded-lg shadow text-white text-sm text-center gap-1"
@@ -41,11 +42,11 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-[873px] md:h-[380px] relative flex items-center flex-col bg-emerald-100 bg-opacity-70 rounded-[20px]">
-            <div className="w-[90%]">
-              <div className="grid grid-cols-2 gap-20 md:gap-0 md:flex mt-[50px] justify-between">
+          <div className="xl:w-11/12 h-full flex items-center flex-col bg-emerald-100 bg-opacity-70 rounded-[20px]">
+            <div className="w-11/12">
+              <div className="grid grid-cols-2 gap-20 lg:gap-0 lg:grid-cols-5 mt-12 justify-between">
                 <div className="flex flex-col">
-                  <div className="text-slate-800 text-sm font-bold mb-[16px]">
+                  <div className="text-slate-800 text-sm font-bold mb-4">
                     Product
                   </div>
                   <div className="flex flex-col text-gray-600 text-sm gap-4">
@@ -57,7 +58,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-slate-800 text-sm font-bold mb-[16px]">
+                  <div className="text-slate-800 text-sm font-bold mb-4">
                     Community
                   </div>
                   <div className="flex flex-col text-gray-600 text-sm gap-4">
@@ -68,7 +69,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <div className=" text-slate-800 text-sm font-bold mb-[16px]">
+                  <div className="text-slate-800 text-sm font-bold mb-4">
                     Resources
                   </div>
                   <div className="flex flex-col text-gray-600 text-sm gap-4">
@@ -79,7 +80,7 @@ const Footer = () => {
                   </div>
                 </div>
                 <div className="flex flex-col">
-                  <div className="text-slate-800 text-sm font-bold mb-[16px]">
+                  <div className="text-slate-800 text-sm font-bold mb-4">
                     Legal
                   </div>
                   <div className="flex flex-col text-gray-600 text-sm gap-4">
@@ -87,16 +88,22 @@ const Footer = () => {
                     <div>Privacy Policy</div>
                   </div>
                 </div>
-                <div className="hidden md:flex">
-                  <div className="w-10 h-10">
-                    {" "}
-                    <img src={logo.src} alt="" />
+                <div className="hidden lg:flex">
+                  <div className="w-6 h-6 lg:w-10 lg:h-10">
+                    <Image
+                      width={50}
+                      height={50}
+                      src={"/svg/logo.svg"}
+                      alt=""
+                    />
                   </div>
-                  <div className="text-green-950 text-xl font-bold">New Chore</div>
+                  <div className="text-green-950 lg:text-xl font-bold">
+                    New Chore
+                  </div>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row mt-[40px] gap-5 justify-center items-center">
+              <div className="flex flex-col md:flex-row mt-10 gap-5 justify-center items-center">
                 <div className="flex justify-center items-center gap-2">
                   <div className="text-slate-800 text-sm font-medium">
                     Contact us
@@ -116,16 +123,23 @@ const Footer = () => {
                     <FontAwesomeIcon icon={faLinkedin} />
                   </div>
                 </div>
-                <div className="flex items-center gap-1 mt-7 mb-20 md:hidden">
-                  <div className="w-10 h-10">
+                <div className="flex items-center gap-1 lg:mt-7 lg:mb-20 lg:hidden">
+                  <div className="w-6 h-6 lg:w-10 lg:h-10">
                     {" "}
-                    <img className="w-full h-full" src={logo.src} alt="" />
+                    <Image
+                      width={50}
+                      height={50}
+                      src={"/svg/logo.svg"}
+                      alt=""
+                    />
                   </div>
-                  <div className="text-green-950 text-xl font-bold">New Chore</div>
+                  <div className="text-green-950 lg:text-xl font-bold">
+                    New Chore
+                  </div>
                 </div>
-                <div className="text-center absolute md:right-[400px] bottom-[25px] text-slate-800 text-sm">
-                  © 2024 with New Chore
-                </div>
+              </div>
+              <div className="text-center mt-4 mb-2 text-slate-800 text-sm">
+                © {date.getFullYear()} with New Chore
               </div>
             </div>
           </div>
