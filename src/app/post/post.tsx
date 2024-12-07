@@ -32,7 +32,7 @@ import dollar from "../images/dollar-circle.svg";
 import clock from "../images/clock.svg";
 import bookmark from "../images/bookmark.svg";
 import bookmarkWhite from "../images/bookmark-white.svg";
-import star from "../images/star.svg";
+import star from "../images/Star.svg";
 import { setChattingWith } from "../features/appSlice";
 import EditAvailability from "../components/EditAvailability";
 import { Metadata } from "next";
