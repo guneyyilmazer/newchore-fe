@@ -10,10 +10,8 @@ import Footer from "./components/Footer";
 /* export const BACKEND_SERVER_IP = "https://newchore.com/backend";
 export const SOCKET_IO_IP = "https://newchore.com/socket.io";
  */
-export const SOCKET_IO_SUFFIX = "/socket.io";
 
-export const BACKEND_SERVER_IP = "http://localhost:4000";
-export const SOCKET_IO_IP = "https://newchore.com/socket.io";
+export const BACKEND_SERVER_IP = "https://newchore-be.vercel.app";
 
 export const categories: categories = {
   cleaning: { value: { cleaning: true }, name: "cleaning" },

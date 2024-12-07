@@ -20,12 +20,7 @@ export default function Home() {
   return (
     <main>
       <div className="bg-slate-800">
-        <div
-          className="bg-[url(/png/doodles.png)]"
-          style={{
-            backgroundSize: "5%",
-          }}
-        >
+        <div className="bg-[#1b2332]">
           <Hero className="pt-10 lg:pt-8 lg:pb-5 w-10/12 2xl:w-2/3 mx-auto" />
         </div>
         <Features className="mt-20 mx-auto max-w-[100rem] mb-10" />

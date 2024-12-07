@@ -159,7 +159,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
           <h4 className="font-bold">Hourly Rate</h4>
           <img className="w-6 h-6" src={dollar.src} />
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -191,7 +191,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
             under 20$ per hr
           </label>
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -223,7 +223,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
             20$ to 40$ per hr
           </label>
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -255,7 +255,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
             40$ to 60$ per hr
           </label>
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -287,7 +287,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
             60$ to 80$ per hr
           </label>
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -319,7 +319,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
             80$ to 100$ per hr
           </label>
         </div>
-        <div className="flex w-[200px] items-center gap-3">
+        <div className="flex items-center gap-3">
           <input
             className="w-7 h-7"
             type="radio"
@@ -361,7 +361,7 @@ const FilterSideBar = ({ page }: { page: string }) => {
           <h4 className="font-bold">Location</h4>
           <img className="w-6 h-6" src={location.src} />
         </div>
-        <div className="w-[200px]">
+        <div>
           {states.length != 0 ? (
             <div className="flex my-3 flex-col">
               <label htmlFor="types">Choose your state</label>

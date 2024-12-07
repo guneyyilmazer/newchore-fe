@@ -94,22 +94,22 @@ const Page = () => {
   }, [filter, page, sort]);
   return (
     /* ⬇ start of main div ⬇ */
-    <div className="">
+    <div>
       {/* ⬇ start of wrapper div ⬇ */}
       <div className="flex">
-        <div className="hidden md:block md:w-[20vw] m-20">
+        <div className="hidden w-1/12 m-10 mt-16 ml-14 lg:block">
           <FilterSideBar page="posts" />
         </div>
         {mobileFilterMenu && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <MobileFilterMenu page="posts" />
           </div>
         )}
         {!mobileFilterMenu && (
           /* ⬇ start of content div ⬇ */
-          <div className="w-full md:w-[80vw] flex items-center md:items-start flex-col">
-            <div className="w-[90%] flex flex-col">
-              <div className="flex justify-between w-full my-20 md:items-center">
+          <div className="w-full mx-auto lg:w-9/12 flex items-center flex-col">
+            <div className="w-full flex flex-col">
+              <div className="flex justify-between w-full my-20">
                 <div className="flex flex-col">
                   <div className="text-xl font-bold">All Jobs</div>
                   <div>Showing {posts.length} results</div>
@@ -144,11 +144,11 @@ const Page = () => {
                 {posts.map((post: post, index: number) => (
                   <div
                     key={index}
-                    className="relative w-full md:w-[450px] flex items-center"
+                    className="relative w-full lg:w-[28.125rem] flex items-center"
                   >
                     <Link
                       href={`/post?id=${post._id}`}
-                      className="h-[240px] hover:opacity-60 mb-4 w-full md:w-[450px] p-6 bg-white rounded-lg shadow border border-gray-200 flex flex-col justify-center gap-5"
+                      className="h-60 hover:opacity-60 mb-4 w-full lg:w-[28.125rem] p-6 bg-white rounded-lg shadow border border-gray-200 flex flex-col justify-center gap-5"
                     >
                       <div className="flex flex-col">
                         <div className="text-black my-2 text-lg font-medium">
@@ -166,14 +166,13 @@ const Page = () => {
                             </div>
                           </div>
                           <div className="text-slate-600 text-sm font-normal">
-                            {post.hourly != -1 &&
-                              "Hourly Pay: " + post.hourly + "$"}
-                            {post.price != -1 && "Price: " + post.price + "$"}
+                            {post.hourly != -1 && "Hourly Pay: $" + post.hourly}
+                            {post.price != -1 && "Price: $" + post.price}
                           </div>
                         </div>
                       </div>
                       <div className="flex">
-                        <div className="flex flex-col w-full">
+                        <div className="w-full flex flex-col">
                           <div>Posted {post.postedTimeAgoText}</div>
                           <div className="flex items-center my-2">
                             <img src={location.src} alt="" />
@@ -192,7 +191,7 @@ const Page = () => {
                       onClick={() => {
                         savePost(post._id);
                       }}
-                      className="m-1 absolute right-[20px] hover:opacity-50 z-10"
+                      className="m-1 absolute right-5 hover:opacity-50 z-10"
                     >
                       <img src={bookmark.src} alt="" />
                     </button>
@@ -206,7 +205,7 @@ const Page = () => {
             <div className="w-full">
               <div className="h-px mt-5 bg-gray-200" />
 
-              <div className="w-[90%] relative mt-2 bg-blac flex justify-center items-center">
+              <div className="w-11/12 relative mt-2 bg-blac flex justify-center items-center">
                 <div className="flex absolute right-0">
                   <select
                     style={{ textAlignLast: "center" }}
