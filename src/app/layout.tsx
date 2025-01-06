@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -7,11 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 import "./css/styles.css";
 import { Providers } from "./Providers";
 import Footer from "./components/Footer";
-/* export const BACKEND_SERVER_IP = "https://newchore.com/backend";
-export const SOCKET_IO_IP = "https://newchore.com/socket.io";
- */
+import { useState } from "react";
 
-export const BACKEND_SERVER_IP = "https://newchore-be.vercel.app";
+export const BACKEND_SERVER_IP = process.env.NEXT_PUBLIC_API_URL;
 
 export const categories: categories = {
   cleaning: { value: { cleaning: true }, name: "cleaning" },
@@ -48,6 +47,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isMobileNavbarOpen, setIsMobileNavbarOpen] = useState(false);
+
+  const toggleMobileNavbar = (isOpen: boolean) => {
+    setIsMobileNavbarOpen(isOpen);
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // Prevent scrolling
+    } else {
+      document.body.style.overflow = ""; // Allow scrolling
+    }
+  };
+
   return (
     <Providers>
       <html lang="en">
@@ -56,9 +66,12 @@ export default function RootLayout({
             <DesktopNavbar />
           </div>
           <div className="lg:hidden">
-            <MobileNavbar />
+            <MobileNavbar
+              isOpen={isMobileNavbarOpen}
+              toggleOpen={toggleMobileNavbar}
+            />
           </div>
-          <div className="">{children}</div>
+          {children}
           <Footer />
         </body>
       </html>

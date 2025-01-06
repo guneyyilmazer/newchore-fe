@@ -10,6 +10,7 @@ import Image from "next/image";
 const DesktopNavbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const user = useSelector((shop: any) => shop.app.user);
+
   return (
     <div className="py-7 text-white hidden lg:flex justify-around items-center bg-slate-800">
       <Link href="/" className="flex h-10 items-center gap-1.5">

@@ -10,12 +10,15 @@ import Cookies from "js-cookie";
 import Auth from "../Auth";
 import MessagesButton from "../MessagesButton";
 import Image from "next/image";
-const MobileNavbar = () => {
-  const [hamburgerMenu, setHamburgerMenu] = useState(false);
+interface MobileNavbarProps {
+  isOpen: boolean;
+  toggleOpen: (isOpen: boolean) => void;
+}
+const MobileNavbar = ({ isOpen, toggleOpen }: MobileNavbarProps) => {
   const user = useSelector((shop: any) => shop.app.user);
   return (
     <div className="secondary">
-      {!hamburgerMenu && (
+      {!isOpen && (
         <div className="flex justify-center items-center ">
           <div className="w-10/12 py-6 flex justify-between items-center">
             <Link href="/" className="flex items-center">
@@ -26,22 +29,18 @@ const MobileNavbar = () => {
                 New Chore
               </div>
             </Link>
-            <button
-              onClick={() => {
-                setHamburgerMenu(true);
-              }}
-            >
+            <button onClick={() => toggleOpen(!isOpen)}>
               <img src={"/svg/hamburger-menu.svg"} alt="" />
             </button>
           </div>
         </div>
       )}
-      {hamburgerMenu && (
+      {isOpen && (
         <div className="absolute flex flex-col items-center top-0 left-0 secondary z-[100] w-screen h-screen text-white">
           <div className="w-10/12">
             <div className="py-6 flex justify-between items-center">
               <Link
-                onClick={() => setHamburgerMenu(false)}
+                onClick={() => toggleOpen(!isOpen)}
                 href="/"
                 className="flex items-center"
               >
@@ -54,7 +53,7 @@ const MobileNavbar = () => {
               </Link>
               <button
                 onClick={() => {
-                  setHamburgerMenu(false);
+                  toggleOpen(!isOpen);
                 }}
               >
                 <img src={"/svg/close-circle.svg"} alt="" />
@@ -65,14 +64,14 @@ const MobileNavbar = () => {
                 {" "}
                 <Link
                   href="/posts"
-                  onClick={() => setHamburgerMenu(false)}
+                  onClick={() => toggleOpen(!isOpen)}
                   className="text-center text-white"
                 >
                   Jobs
                 </Link>
               </li>
               {user.isLoggedIn && (
-                <li onClick={() => setHamburgerMenu(false)}>
+                <li onClick={() => toggleOpen(!isOpen)}>
                   {" "}
                   <MessagesButton />
                 </li>
@@ -81,7 +80,7 @@ const MobileNavbar = () => {
                 {" "}
                 <Link
                   href="/freelancers"
-                  onClick={() => setHamburgerMenu(false)}
+                  onClick={() => toggleOpen(!isOpen)}
                   className="text-center text-white"
                 >
                   Freelancers
@@ -150,7 +149,7 @@ const MobileNavbar = () => {
             <div className="flex flex-col text-center gap-5">
               <Link
                 href="/post/create"
-                onClick={() => setHamburgerMenu(false)}
+                onClick={() => toggleOpen(!isOpen)}
                 className="px-10 py-3 gap-2 text-white bg-green-600 rounded-xl"
               >
                 <div className="flex justify-center items-center gap-2">
@@ -163,7 +162,7 @@ const MobileNavbar = () => {
               {!user.isLoggedIn && (
                 <Link
                   href="/auth"
-                  onClick={() => setHamburgerMenu(false)}
+                  onClick={() => toggleOpen(!isOpen)}
                   className="px-10 py-3 text-white rounded-xl shadow border border-white"
                 >
                   Sign In

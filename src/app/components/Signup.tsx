@@ -111,7 +111,7 @@ const Signup = () => {
       <input
         type="text"
         ref={usernameRef}
-        className="my-2"
+        className="my-2 p-2"
         placeholder="Enter username"
         name=""
         id="username"
@@ -123,7 +123,7 @@ const Signup = () => {
       <input
         type="email"
         ref={emailRef}
-        className="my-2"
+        className="my-2 p-2"
         placeholder="Enter email"
         name=""
         id="email"
@@ -135,7 +135,7 @@ const Signup = () => {
       <input
         type="password"
         ref={passwordRef}
-        className="my-2"
+        className="my-2 p-2"
         placeholder="Enter password"
         name=""
         id="password"
